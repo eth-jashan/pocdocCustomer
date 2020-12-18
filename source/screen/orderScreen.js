@@ -6,11 +6,30 @@ import { useDispatch, useSelector } from 'react-redux'
 import * as orderAction from '../../store/action/order'
 import OrderCoupon from '../component/orderCoupon'
 
-const OrderScreen = () => {
+const OrderScreen = ({navigation}) => {
 
     const dispatch = useDispatch()
     const order = useSelector(x=>x.order.orders)
     console.log("Order :", order)
+
+    const addOnDispatch = useCallback( async() => {
+        
+        dispatch(orderAction.fetchOrder())
+        
+    },[dispatch, setLoad]);
+
+    useEffect(()=>{
+        const willFocusListener = navigation.addListener('willFocus',addOnDispatch)
+        console.log('Lsittttt:',listPackage)
+        return()=>{
+            willFocusListener.remove();
+        };
+    },[addOnDispatch]);
+
+    useEffect( () => {
+       
+       addOnDispatch()
+    },[dispatch, addOnDispatch]);
 
     useEffect(()=>{
 

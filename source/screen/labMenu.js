@@ -16,7 +16,7 @@ const LabMenu = ({navigation}) => {
     const dispatch = useDispatch()
     const id = navigation.getParam('id')
 
-    const cartItem = useSelector(x=>x.cart.cartList)
+    // const cartItem = useSelector(x=>x.cart.cartList)
     const totalAmount = useSelector(x=>x.cart.totalAmount)
     const cartQuantity = useSelector(x=>x.cart.totalQuantity)
 

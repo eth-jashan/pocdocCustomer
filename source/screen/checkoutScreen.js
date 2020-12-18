@@ -17,7 +17,7 @@ const CheckoutScreen = ({navigation}) => {
 
     const orderPlace =async() => {
 
-        await dispatch(orderAction.addOrder(id, 1, cartItems, cartPrice, name + " " + last, number, address, 'Not Confirmed'))
+        await dispatch(orderAction.addOrder(id,  cartItems, cartPrice, name + " " + last, number, address, 'Not Confirmed'))
         navigation.navigate('Home')
     }
     

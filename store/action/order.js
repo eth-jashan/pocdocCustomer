@@ -4,9 +4,11 @@ import order from "../reducer/order"
 export const ADD_ORDER = 'ADD_ORDER'
 export const FETCH_ORDER = 'FETCH_ORDER'
 
-export const addOrder = (propId, custId, cartItem, cartTotal, name, number, address, status) => {
+export const addOrder = (propId,  cartItem, cartTotal, name, number, address, status) => {
 
     return async (dispatch, getState) => {
+
+        const custId = getState().auth.userId
 
         
 
@@ -35,6 +37,8 @@ export const fetchOrder = () => {
 
     return async (dispatch, getState) => {
 
+        const uid = getState().auth.userId
+
         const response = await fetch(`https://pocdocadmin.firebaseio.com/order.json?`)
         const resData = await response.json()
 
@@ -48,7 +52,7 @@ export const fetchOrder = () => {
 
         
 
-        dispatch({type:FETCH_ORDER, list: orderList})
+        dispatch({type:FETCH_ORDER, list: orderList.filter(x=>x.custId === uid)})
     }
 
 }
